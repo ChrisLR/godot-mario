@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/tileset.png" type="Texture" id=1]
+[ext_resource path="res://Entities/Brick/Brick.gd" type="Script" id=2]
+[ext_resource path="res://assets/items.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.99463, 8.16178 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Break"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Block:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FragmentTR:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -8, -32 ), Vector2( -8, 500 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FragmentTL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 8, -32 ), Vector2( 8, 500 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FragmentBR:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 8, 8 ), Vector2( 8, 500 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("FragmentBL:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -8, 8 ), Vector2( -8, 500 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Block:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Block:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, 0 ) ]
+}
+
+[node name="Brick" type="StaticBody2D"]
+position = Vector2( -1476.33, -95.441 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Block" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Break = SubResource( 2 )
+anims/Hit = SubResource( 3 )
+
+[node name="FragmentTR" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 64, 16, 16, 16 )
+
+[node name="FragmentBR" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 64, 32, 16, 16 )
+
+[node name="FragmentTL" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 64, 16, 16, 16 )
+
+[node name="FragmentBL" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 64, 32, 16, 16 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
