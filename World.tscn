@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/level-1-1.png" type="Texture" id=1]
 [ext_resource path="res://assets/tileset.png" type="Texture" id=2]
 [ext_resource path="res://Entities/QuestionBox/QuestionBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Entities/Mario/Mario.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/Brick/Brick.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/Goomba/Goomba.tscn" type="PackedScene" id=6]
+[ext_resource path="res://KillerZone.gd" type="Script" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -43,6 +45,30 @@ points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=19]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=21]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=22]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="TileSet" id=14]
@@ -226,9 +252,58 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape = SubResource( 15 )
 4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
+4/shape_one_way_margin = 1.0
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 15 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 16 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 17 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 18 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 19 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 20 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 21 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 22 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 4/z_index = 0
 5/name = "tileset.png 5"
 5/texture = ExtResource( 2 )
@@ -336,6 +411,9 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 13/shapes = [  ]
 13/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 2000, 10 )
+
 [node name="World" type="Node2D"]
 
 [node name="Reference" type="Sprite" parent="."]
@@ -368,26 +446,147 @@ position = Vector2( -1490.57, -93.6566 )
 [node name="Camera2D" type="Camera2D" parent="Level/Mario"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+limit_top = -200
+limit_bottom = 100
 
 [node name="Boxes" type="Node2D" parent="Level"]
 
 [node name="QuestionBox" parent="Level/Boxes" instance=ExtResource( 3 )]
-position = Vector2( -1432.23, -87.2515 )
+position = Vector2( -1432, -88 )
+
+[node name="QuestionBox5" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( -440, -88 )
+
+[node name="QuestionBox6" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( -184, -152 )
+
+[node name="QuestionBox7" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( 56, -152 )
+
+[node name="QuestionBox8" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( 8, -88 )
+
+[node name="QuestionBox9" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( 56, -88 )
+
+[node name="QuestionBox10" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( 104, -88 )
+
+[node name="QuestionBox11" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( 376, -152 )
+
+[node name="QuestionBox12" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( 392, -152 )
+
+[node name="QuestionBox13" parent="Level/Boxes" instance=ExtResource( 3 )]
+position = Vector2( 1032, -88 )
 
 [node name="QuestionBox2" parent="Level/Boxes" instance=ExtResource( 3 )]
-position = Vector2( -1352.82, -86.5024 )
+position = Vector2( -1352, -88 )
 
 [node name="QuestionBox3" parent="Level/Boxes" instance=ExtResource( 3 )]
-position = Vector2( -1320.61, -86.5024 )
+position = Vector2( -1320, -88 )
 
 [node name="QuestionBox4" parent="Level/Boxes" instance=ExtResource( 3 )]
-position = Vector2( -1336.34, -150.18 )
+position = Vector2( -1336, -152 )
 
 [node name="Brick" parent="Level/Boxes" instance=ExtResource( 5 )]
-position = Vector2( -1368.26, -86.4356 )
+position = Vector2( -1368, -88 )
 
 [node name="Brick2" parent="Level/Boxes" instance=ExtResource( 5 )]
-position = Vector2( -1335.95, -85.9058 )
+position = Vector2( -1336, -88 )
 
 [node name="Brick3" parent="Level/Boxes" instance=ExtResource( 5 )]
-position = Vector2( -1304.17, -86.4356 )
+position = Vector2( -1304, -88 )
+
+[node name="Brick4" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -456, -88 )
+
+[node name="Brick5" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -424, -88 )
+
+[node name="Brick6" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -408, -152 )
+
+[node name="Brick7" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -392, -152 )
+
+[node name="Brick8" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -376, -152 )
+
+[node name="Brick9" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -360, -152 )
+
+[node name="Brick10" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -344, -152 )
+
+[node name="Brick11" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -328, -152 )
+
+[node name="Brick12" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -312, -152 )
+
+[node name="Brick13" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -296, -152 )
+
+[node name="Brick14" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -232, -152 )
+
+[node name="Brick15" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -216, -152 )
+
+[node name="Brick16" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -200, -152 )
+
+[node name="Brick17" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -184, -88 )
+
+[node name="Brick18" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -88, -88 )
+
+[node name="Brick19" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( -72, -88 )
+
+[node name="Brick20" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 200, -88 )
+
+[node name="Brick21" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 248, -152 )
+
+[node name="Brick22" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 264, -152 )
+
+[node name="Brick23" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 280, -152 )
+
+[node name="Brick24" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 360, -152 )
+
+[node name="Brick25" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 408, -152 )
+
+[node name="Brick26" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 376, -88 )
+
+[node name="Brick27" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 392, -88 )
+
+[node name="Brick28" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 1000, -88 )
+
+[node name="Brick29" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 1016, -88 )
+
+[node name="Brick30" parent="Level/Boxes" instance=ExtResource( 5 )]
+position = Vector2( 1048, -88 )
+
+[node name="Goomba" parent="Level" instance=ExtResource( 6 )]
+position = Vector2( -1272, -40 )
+
+[node name="KillerZone" type="Area2D" parent="Level"]
+position = Vector2( 0, 16 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/KillerZone"]
+shape = SubResource( 23 )
+[connection signal="body_entered" from="Level/KillerZone" to="Level/KillerZone" method="_on_KillerZone_body_entered"]

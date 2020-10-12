@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-func on_bump(bumper):
+func on_bump(_bumper):
 	$AnimationPlayer.play("Break")
 	$FragmentBL.visible = true
 	$FragmentBR.visible = true
