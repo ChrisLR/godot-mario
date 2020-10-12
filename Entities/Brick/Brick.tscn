@@ -84,6 +84,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "Hit"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Block:position")
 tracks/0/interp = 1

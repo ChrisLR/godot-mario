@@ -38,6 +38,7 @@ animations = [ {
 
 [sub_resource type="Animation" id=7]
 resource_name = "Hit"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Block:position")
 tracks/0/interp = 1
@@ -118,5 +119,4 @@ anims/Hit = SubResource( 7 )
 [node name="Coin" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 12 )
-frame = 2
 playing = true
